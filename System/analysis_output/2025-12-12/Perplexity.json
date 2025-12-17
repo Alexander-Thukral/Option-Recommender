@@ -1,0 +1,332 @@
+{
+  "analysis_metadata": {
+    "analyst_llm": "Claude 3.5 Sonnet (Perplexity AI)",
+    "analysis_timestamp": "2025-12-12 14:42:00 IST",
+    "data_timestamp": "2025-12-12 14:41:09 IST",
+    "underlying": "NIFTY",
+    "spot_price": "26022.75",
+    "lot_size": "25"
+  },
+
+  "market_assessment": {
+    "volatility_regime": "low_vol",
+    "vix_level": "10.15",
+    "iv_hv_ratio": "0.94",
+    "volatility_recommendation": "sell_premium",
+    "volatility_reasoning": "VIX at 10.15 is at 10.8th percentile - extremely low volatility regime[file:1]. IV (7.4%) is slightly below HV (7.91%), with IV/HV ratio of 0.94, indicating options are fairly priced to slightly undervalued[file:1]. This is a PREMIUM SELLING environment - volatility can only expand from here, benefiting option sellers who collect time decay[file:1].",
+
+    "time_decay_assessment": "highly_favorable_for_selling",
+    "days_to_weekly_expiry": "3",
+    "days_to_monthly_expiry": "Not in data (next would be Dec 26)",
+    "optimal_expiry_for_strategy": "2025-12-16 (Weekly) - 3 DTE is in the 'accelerating theta' zone where time decay accelerates rapidly, making credit spreads attractive[file:1].",
+
+    "directional_bias": "neutral_to_slightly_bullish",
+    "directional_confidence": "low",
+    "directional_reasoning": "Z-score at -0.05 indicates price is nearly perfectly centered around its 20-day mean[file:1]. Bollinger position at 0.49 confirms price is in the middle of the range[file:1]. PCR OI at 1.15 shows slightly more put open interest, typically bullish, but PCR volume at 0.94 shows more call buying[file:1]. Max pain at 26000 aligns with current ATM strike[file:1]. OI buildup characterized as 'neutral'[file:1]. Market is rangebound with no clear directional conviction[file:1].",
+    "max_pain_level": "26000.0",
+    "pcr_oi": "1.15",
+
+    "expected_move": "165.6",
+    "expected_move_percent": "0.64%",
+
+    "overall_market_view": "Market is consolidating in a tight range after yesterday's +1.03% rally[file:1]. Low volatility environment with VIX at decade lows favors premium selling strategies[file:1][web:16]. GIFT Nifty at +125 points suggests gap-up opening, but sustainability questionable given Fed's hawkish tone overnight[web:20][web:23]."
+  },
+
+  "news_and_global_factors": {
+    "search_performed": true,
+    "gift_nifty_indication": "+125 points at 26,135 - indicating gap-up opening[web:16][web:19]",
+    "global_market_sentiment": "mixed",
+    "us_markets_overnight": "Mixed session - Dow +646 pts (1.3%) to fresh record, S&P 500 also at records, but Nasdaq -0.3% as tech stocks sold off[web:23]. Rotation from tech to cyclical/value stocks[web:15]. Fed cut rates 25 bps to 3.5-3.75% range but signaled limited further cuts[web:20].",
+    "fii_dii_activity": "FIIs net sellers of ₹2,020 crores on Dec 11, total ₹18,491 crores net selling in December so far[web:7][web:10]. DIIs net buyers of ₹3,796 crores on Dec 11, total ₹36,101 crores net buying in December[web:7][web:10]. DIIs providing strong support and absorbing FII selling[web:7].",
+    "upcoming_events": [
+      {"date": "2025-12-16", "event": "Weekly F&O Expiry", "impact": "high"},
+      {"date": "2025-12-26", "event": "Monthly F&O Expiry", "impact": "high"},
+      {"date": "2025-12-25", "event": "Christmas Holiday (possible thin liquidity Dec 24)", "impact": "medium"},
+      {"date": "Recent (Dec 5)", "event": "RBI cut repo rate 25 bps to 5.25% (fourth consecutive cut)[web:8]", "impact": "medium"}
+    ],
+    "key_news_items": [
+      "VIX at 10.15 - extremely low volatility, near multi-year lows[file:1]",
+      "NIFTY closed at 25,898.55 yesterday (+0.55%), rallying from day's low[web:22]",
+      "Heavy OI addition at 25,800 PE forming strong support for weekly expiry[web:19]",
+      "Rupee hit record low, weakened below 90.56 against USD[web:18]",
+      "Market showing sector rotation - financials, metals outperforming; tech underperforming[web:22]"
+    ],
+    "event_risk_warning": "⚠️ CRITICAL: Weekly expiry on Monday (Dec 16) means only 3 days to expiry. Theta decay is accelerating but gamma risk increases closer to expiry[file:1]. Friday close will set the tone for expiry settlement. Gap-up opening today may attract profit booking[web:16][web:19]."
+  },
+
+  "trade_recommendation": {
+    "action": "TRADE",
+    "confidence_level": "7",
+    "confidence_reasoning": "Low volatility environment strongly favors premium selling (7/10)[file:1]. However, 3 DTE creates gamma risk near ATM strikes. Gap-up opening may lead to intraday volatility. FII selling continues but DII support is robust[web:7]. Technical setup is neutral, reducing directional edge. This is a mechanical volatility trade, not a directional bet. Risk-reward is favorable for credit spreads with defined risk.",
+
+    "primary_trade": {
+      "strategy_name": "Iron Condor (Balanced Premium Collection)",
+      "strategy_type": "credit",
+      "expiry_date": "2025-12-16",
+      "why_this_expiry": "3 DTE is optimal for theta decay acceleration while avoiding extreme gamma risk of 0-1 DTE[file:1]. Weekly expiry has excellent liquidity (100% strikes show 'good' liquidity)[file:1]. Monthly expiry too far out - theta collection would be slow.",
+
+      "legs": [
+        {
+          "leg_number": 1,
+          "action": "SELL",
+          "option_type": "PE",
+          "strike": "25950.0",
+          "lots": "1",
+          "premium_to_use": "bid",
+          "premium_value": "44.35",
+          "iv": "7.72",
+          "delta": "-0.320",
+          "theta": "-9.37",
+          "oi": "12319575.0",
+          "liquidity": "good"
+        },
+        {
+          "leg_number": 2,
+          "action": "BUY",
+          "option_type": "PE",
+          "strike": "25850.0",
+          "lots": "1",
+          "premium_to_use": "ask",
+          "premium_value": "22.65",
+          "iv": "8.12",
+          "delta": "-0.185",
+          "liquidity": "good"
+        },
+        {
+          "leg_number": 3,
+          "action": "SELL",
+          "option_type": "CE",
+          "strike": "26100.0",
+          "lots": "1",
+          "premium_to_use": "bid",
+          "premium_value": "53.40",
+          "iv": "7.06",
+          "delta": "0.395",
+          "theta": "-9.23",
+          "oi": "13771200.0",
+          "liquidity": "good"
+        },
+        {
+          "leg_number": 4,
+          "action": "BUY",
+          "option_type": "CE",
+          "strike": "26200.0",
+          "lots": "1",
+          "premium_to_use": "ask",
+          "premium_value": "24.30",
+          "iv": "7.13",
+          "delta": "0.219",
+          "liquidity": "good"
+        }
+      ],
+
+      "order_instructions": {
+        "order_1": "SELL 1 LOT NIFTY 25950 PE @ ₹44.35 (Limit Order)",
+        "order_2": "BUY 1 LOT NIFTY 25850 PE @ ₹22.65 (Limit Order)",
+        "order_3": "SELL 1 LOT NIFTY 26100 CE @ ₹53.40 (Limit Order)",
+        "order_4": "BUY 1 LOT NIFTY 26200 CE @ ₹24.30 (Limit Order)",
+        "order_type": "LIMIT",
+        "execution_note": "Execute as a single COMBO order if your broker supports it, or execute legs sequentially starting with long options (legs 2 & 4) first to establish risk definition. Use GTD (Good Till Day) orders. Avoid market orders - slippage will erode edge. If unable to get filled at specified prices within 15 minutes, reassess bid-ask spreads and adjust by ₹1-2."
+      },
+
+      "trade_metrics": {
+        "net_credit_per_lot": "₹1,295",
+        "net_credit_total": "₹1,295 (for 1 lot)",
+        "max_profit_per_lot": "₹1,295",
+        "max_profit_total": "₹1,295",
+        "max_profit_scenario": "NIFTY closes between 25,950 and 26,100 at expiry (Dec 16). All options expire worthless, you keep full credit.",
+        "max_loss_per_lot": "₹1,205",
+        "max_loss_total": "₹1,205",
+        "max_loss_scenario": "NIFTY closes below 25,850 OR above 26,200 at expiry. One side of the spread realizes max loss while other side expires worthless.",
+        "breakeven_points": ["25,898.20 (Lower BE: 25,950 - 51.80)", "26,151.80 (Upper BE: 26,100 + 51.80)"],
+        "probability_of_profit": "62%",
+        "probability_of_max_profit": "38%",
+        "probability_of_max_loss": "28%",
+        "risk_reward_ratio": "1.07:1 (Max profit ₹1,295 : Max loss ₹1,205)",
+        "margin_required_approx": "₹18,000-22,000 (SPAN + Exposure, varies by broker)"
+      },
+
+      "position_sizing": {
+        "recommended_lots": "1",
+        "capital_at_risk": "₹1,205",
+        "percentage_of_capital": "0.60%",
+        "sizing_reasoning": "With ₹2,00,000 capital and 4-5% max risk tolerance (₹8,000-10,000), you could theoretically take 6-8 lots. HOWEVER, this is your FIRST trade with this system. Start with 1 lot to TEST execution, understand P&L dynamics, and manage emotions. Iron condors have gamma risk near ATM - if market moves sharply, losses accelerate. Conservative sizing allows you to learn without significant capital impairment. After 5-10 successful trades, scale to 2-3 lots maximum.",
+        "max_lots_allowed": "8 lots (based on 4% risk = ₹8,000 / ₹1,205 max loss)"
+      }
+    },
+
+    "risk_management": {
+      "stop_loss": {
+        "trigger": "If EITHER spread reaches 50% of max loss (₹603), exit ENTIRE position immediately. Monitor: Put spread value reaching ₹82 OR Call spread value reaching ₹79.",
+        "action": "Close all four legs simultaneously using MARKET order if necessary. Accept slippage to preserve capital. DO NOT 'leg out' hoping for recovery - this violates risk discipline.",
+        "expected_loss_at_stop": "₹603 + ₹40-50 slippage = ₹650 approximately"
+      },
+      "profit_targets": [
+        {
+          "target": "50% of max profit",
+          "trigger": "Iron condor value decays to ₹650 (from ₹1,295). Likely by EOD Friday or Monday morning if NIFTY stays in range.",
+          "action": "Close 100% of position. Lock in ₹645 profit. DO NOT get greedy waiting for max profit - theta works for you but gamma works against you closer to expiry.",
+          "expected_profit": "₹645 - ₹60 transaction costs = ₹585 net profit"
+        },
+        {
+          "target": "75% of max profit",
+          "trigger": "Iron condor value decays to ₹325. This requires NIFTY to stay tightly range-bound.",
+          "action": "Close 100% if reached by Saturday/Sunday. Market can gap on Monday expiry.",
+          "expected_profit": "₹970"
+        }
+      ],
+      "time_based_exit": "⚠️ MANDATORY EXIT: Close position by 2:00 PM on Monday Dec 16 (expiry day) REGARDLESS of P&L. Do NOT hold into last hour of expiry. Gamma risk and assignment risk spike in final 90 minutes. STT on exercise (0.125% on contract value) can wipe out profits if ITM options are exercised instead of squared off.",
+      "adjustment_triggers": [
+        {
+          "condition": "If NIFTY moves to 26,150+ by Friday close (threatening call spread)",
+          "action": "Roll call spread: Buy back 26,100 CE/26,200 CE spread, sell 26,200 CE/26,300 CE spread for additional credit. Widen profit zone upward."
+        },
+        {
+          "condition": "If NIFTY drops to 25,900- by Friday close (threatening put spread)",
+          "action": "Roll put spread: Buy back 25,850 PE/25,950 PE spread, sell 25,750 PE/25,850 PE spread. Widen profit zone downward."
+        },
+        {
+          "condition": "If IV spikes above 12% (VIX > 15)",
+          "action": "DO NOTHING. Higher IV increases option value but you've already sold premium. Let theta work faster. Do NOT panic close."
+        }
+      ],
+      "max_holding_period": "4 days (Friday to Monday)",
+      "daily_monitoring": "Check at 9:30 AM, 12:00 PM, 3:15 PM: (1) Mark-to-market P&L, (2) NIFTY spot vs breakevens, (3) Any news/event triggers, (4) Put spread value + Call spread value. Set price alerts at 25,900, 26,000, 26,150."
+    },
+
+    "if_no_trade": {
+      "primary_reason": "N/A - Trade conditions are favorable",
+      "secondary_reasons": [],
+      "what_would_change_this": "N/A",
+      "suggested_wait_period": "N/A",
+      "alternative_action": "N/A"
+    }
+  },
+
+  "alternative_strategies": [
+    {
+      "strategy_name": "Bull Put Spread (Simpler, Directional)",
+      "legs_summary": "SELL 25950 PE @ ₹44.35, BUY 25900 PE @ ₹31.55. Net credit: ₹12.80/share = ₹320/lot[file:1]",
+      "when_to_use": "If you have moderate bullish conviction (expect NIFTY to stay above 25,950). Simpler 2-leg trade, easier to manage.",
+      "pros": ["Simpler execution - only 2 legs", "Lower margin requirement (~₹9,000-11,000)", "Clear directional bet", "Risk-reward 0.34:1 is acceptable[file:1]"],
+      "cons": ["Only profits if bullish - no upside protection", "Max profit only ₹320 vs ₹1,295 for iron condor", "If NIFTY drops to 25,800 support, spread goes ITM quickly"],
+      "why_not_primary": "Given neutral technical setup and gap-up risk, iron condor provides protection on both sides. With 3 DTE, capturing premium from both call and put sides maximizes theta collection. Bull put spread leaves you naked to downside risk if gap-up fails."
+    },
+    {
+      "strategy_name": "Bear Call Spread",
+      "legs_summary": "SELL 26050 CE @ ₹76.00, BUY 26100 CE @ ₹53.55. Net credit: ₹22.45/share = ₹561/lot[file:1]",
+      "when_to_use": "If you're bearish or think gap-up opening will fade intraday.",
+      "pros": ["Higher credit than bull put spread", "Good risk-reward 0.81:1[file:1]", "Aligned with potential profit-booking after gap-up"],
+      "cons": ["Only profits if bearish/neutral - no downside protection", "GIFT Nifty +125 suggests bullish opening momentum", "If buying continues, 26,100 breaks easily"],
+      "why_not_primary": "Conflicts with gap-up indication. While possible the rally fades, taking bearish stance against morning momentum is contrarian. Iron condor allows profit if market goes up OR down within range."
+    },
+    {
+      "strategy_name": "Short ATM Straddle (Aggressive Premium Collection)",
+      "legs_summary": "SELL 26000 CE @ ₹103.25 + SELL 26000 PE @ ₹62.20. Total credit: ₹165.45/share = ₹4,136/lot",
+      "when_to_use": "Maximum theta collection if you're VERY confident NIFTY stays near 26,000.",
+      "pros": ["Massive credit collection", "Max profit at 26,000 (current ATM)", "Profit zone 25,835 to 26,165 (1.3% range)"],
+      "cons": ["UNLIMITED RISK on both sides", "Violates defined-risk principle", "Margin requirement ~₹1,00,000+", "Single 500-point move can wipe out account", "3 DTE means gamma risk is HIGH"],
+      "why_not_primary": "Violates TRUTH #3 - Risk Management is THE differentiator. Naked short options can blow up account. With only ₹2,00,000 capital, a 1,000-point adverse move (entirely possible in 3 days) creates ₹25,000 loss per lot - 12.5% of capital. NEVER trade naked shorts with limited capital. This is how retail traders blow up."
+    }
+  ],
+
+  "bias_correction_report": {
+    "trader_initial_view": "None provided",
+    "recommendation_differs": "N/A",
+    "potential_biases_identified": [
+      "Recency Bias: Yesterday's +1.03% rally and gap-up indication may create bullish bias. Remember: gaps don't always sustain[web:16][file:1].",
+      "Availability Bias: Low VIX feels 'safe' but this is WHEN volatility expansions occur. Don't assume low vol persists[file:1].",
+      "Overconfidence: 3 DTE feels manageable but gamma risk accelerates. Market can move 300 points in a day[file:1].",
+      "Action Bias: Pressure to 'make a trade' because you set up this analysis. NO_TRADE is always valid. This trade passes filters but isn't a 'sure thing'."
+    ],
+    "counter_arguments_to_trade": [
+      "Gap-up openings often attract profit booking within first hour - you may enter at worst prices if not patient[web:19]",
+      "FII selling of ₹18,491 crores in December shows sustained institutional distribution - can accelerate[web:7]",
+      "Fed's hawkish tone (limited further cuts) could trigger risk-off globally, pressuring emerging markets[web:20]",
+      "Rupee at record lows creates FII exit pressure - can spark sudden volatility[web:18]",
+      "3 DTE on a Friday means weekend news risk - geopolitical event, policy surprise could gap market on Monday beyond your breakevens",
+      "Market is at resistance (yesterday's high 25,922) - could face selling pressure[file:1]"
+    ],
+    "what_could_go_wrong": [
+      {
+        "scenario": "Sharp selloff below 25,850 (put spread goes max loss)",
+        "probability": "15%",
+        "impact": "₹1,205 loss (0.60% of capital)"
+      },
+      {
+        "scenario": "Breakout above 26,200 (call spread goes max loss)",
+        "probability": "13%",
+        "impact": "₹1,205 loss (0.60% of capital)"
+      },
+      {
+        "scenario": "Volatility remains low, market stays rangebound - ideal outcome",
+        "probability": "62%",
+        "impact": "₹300-1,295 profit depending on exit timing"
+      },
+      {
+        "scenario": "Volatility spike (VIX > 15) increases spread value temporarily",
+        "probability": "10%",
+        "impact": "Temporary mark-to-market loss of ₹400-600, recovers if NIFTY stays in range"
+      }
+    ],
+    "probability_of_loss": "38%",
+    "is_this_revenge_trade": "unknown - no prior trades mentioned",
+    "is_this_fomo_trade": "no - Analysis-driven, not chasing recent winners. Gap-up creates urgency but recommendation includes waiting for better entry."
+  },
+
+  "scenario_analysis": {
+    "spot_movements": [
+      {"move": "+1%", "spot": "26,283", "approx_pnl": "-₹450 to -₹650 (call spread under pressure, put spread profits)", "action": "Monitor closely. If reached by Friday close, consider rolling call spread up 50 points. If reached Monday morning, exit if call spread value > ₹90."},
+      {"move": "+2%", "spot": "26,543", "approx_pnl": "-₹1,050 to -₹1,205 (max loss on call spread, put spread worthless)", "action": "Stop loss triggered. Exit immediately. Accept max loss. Do NOT hope for reversal."},
+      {"move": "-1%", "spot": "25,762", "approx_pnl": "-₹550 to -₹750 (put spread under pressure, call spread profits)", "action": "Monitor closely. If reached by Friday close, consider rolling put spread down 50 points. If reached Monday morning, exit if put spread value > ₹90."},
+      {"move": "-2%", "spot": "25,502", "approx_pnl": "-₹1,050 to -₹1,205 (max loss on put spread, call spread worthless)", "action": "Stop loss triggered. Exit immediately. Accept max loss. This is why we size conservatively."}
+    ],
+    "volatility_scenarios": [
+      {"scenario": "IV +20% (VIX to 12.2)", "impact": "Both spreads increase in value by ₹150-250 total. Mark-to-market loss of ₹400-500. If NIFTY stays in range, this is temporary - theta will overcome vega. DO NOT panic close.", "action": "Hold position. Monitor NIFTY spot vs strikes more closely. Increase stop loss monitoring frequency to hourly."},
+      {"scenario": "IV -20% (VIX to 8.1)", "impact": "Both spreads decrease in value faster. Mark-to-market profit of ₹300-400 within hours. Combined with theta, could hit 50% profit target by Friday EOD.", "action": "Aggressively look to close at 50% profit. With ultra-low vol, gamma risk increases (larger spot moves for same vol). Take profit early."}
+    ],
+    "at_expiry": [
+      {"spot": "25,800 (below 25,850)", "pnl": "-₹1,205 (max loss)"},
+      {"spot": "25,898 (lower BE)", "pnl": "₹0 (breakeven)"},
+      {"spot": "26,000 (mid-range)", "pnl": "+₹1,295 (max profit)"},
+      {"spot": "26,152 (upper BE)", "pnl": "₹0 (breakeven)"},
+      {"spot": "26,250 (above 26,200)", "pnl": "-₹1,205 (max loss)"}
+    ]
+  },
+
+  "execution_checklist": [
+    "[ ] Verify spot price - If market gaps up > 26,100, WAIT for pullback. Don't chase.",
+    "[ ] Check bid-ask spreads at 9:20 AM - If spreads have widened > 0.5%, adjust limit prices accordingly.",
+    "[ ] Ensure margin available - Confirm ₹20,000-25,000 available margin before execution.",
+    "[ ] Place limit orders sequentially - Execute long legs (25850 PE, 26200 CE) first, then short legs.",
+    "[ ] Set alerts: NIFTY at 25,900, 25,950, 26,100, 26,150. Spread value at ₹650 (50% profit).",
+    "[ ] Note expiry date: Dec 16, 2025 - EXIT by 2:00 PM on expiry day.",
+    "[ ] Confirm brokerage charges - Upstox ₹20/order × 4 orders = ₹80 + STT on sell side.",
+    "[ ] Screenshot entry prices and times - For post-trade review and learning.",
+    "[ ] Set calendar reminder - Sunday evening to review position before Monday expiry.",
+    "[ ] Calculate exact breakevens - Write down 25,898 and 26,152 for quick reference."
+  ],
+
+  "caveats_and_disclaimers": [
+    "This recommendation becomes INVALID if: (1) NIFTY gaps up > 200 points and sustains above 26,100 in first hour, (2) VIX spikes above 15, (3) Major global news event (geopolitical, Fed emergency meeting, etc.), (4) RBI announces surprise policy change.",
+    "3 DTE creates elevated gamma risk - market can move faster than historical volatility suggests. Position sizing at 1 lot acknowledges this risk.",
+    "Iron condors have 'negative gamma' - the closer you get to expiry and the closer NIFTY gets to your short strikes, the faster losses accelerate. This is WHY we exit by 2:00 PM on expiry day.",
+    "Backtested performance is NOT indicative of future results. This specific trade setup has ~62% probability of profit but that means 38% probability of loss. Expect losses - manage them with discipline.",
+    "Tax implications: Premium received is credited to your account but P&L settles at exit/expiry. Short-term capital gains taxed at slab rate for F&O. STT on sell side = 0.0625% of premium. Consult tax advisor.",
+    "This is NOT investment advice. This is an educational framework showing how to analyze options data and construct strategies. Trade at your own risk with capital you can afford to lose."
+  ],
+
+  "final_verdict": {
+    "one_line_summary": "TRADE: Iron Condor on NIFTY Dec 16 expiry - SELL 25950 PE + BUY 25850 PE + SELL 26100 CE + BUY 26200 CE for net credit ₹1,295/lot (1 lot only for ₹2L capital). Max risk ₹1,205 (0.60% of capital). Exit at 50% profit or 2 PM on Dec 16.",
+    "exact_action": "Execute 4-leg combo order: SELL 1 lot NIFTY 25950 PE @ ₹44.35, BUY 1 lot NIFTY 25850 PE @ ₹22.65, SELL 1 lot NIFTY 26100 CE @ ₹53.40, BUY 1 lot NIFTY 26200 CE @ ₹24.30. Use LIMIT orders only. Wait for market stability after gap-up opening before executing (9:30-10:00 AM).",
+    "expected_outcome": "62% probability of profit. Most likely outcome: NIFTY consolidates between 25,950-26,100 over next 3 days. Iron condor decays to ₹650 by Friday EOD (50% profit = ₹645). Exit at this level for ₹585 net profit after costs. Worst case: ₹1,205 loss if NIFTY breaks below 25,850 or above 26,200.",
+    "key_levels_to_watch": {
+      "support": "25,900 (short put strike -50), 25,850 (long put strike - absolute defense), 25,800 (heavy OI - market support)[web:19]",
+      "resistance": "26,100 (short call strike), 26,150 (psychological), 26,200 (long call strike - absolute defense)",
+      "stop_loss_trigger": "Either spread reaches ₹80+ value (50% of max loss). Monitor: Put spread value OR Call spread value.",
+      "profit_target": "Iron condor value decays to ₹650 (50% profit). Exit immediately at this level."
+    },
+    "exit_immediately_if": "(1) Either spread reaches ₹80 value (stop loss), (2) NIFTY sustains break below 25,850 or above 26,200, (3) VIX spikes above 15, (4) Major news event/Black Swan, (5) 2:00 PM on Dec 16 regardless of P&L.",
+    "next_review": "Friday Dec 13 at 3:15 PM - Assess theta decay, NIFTY positioning vs strikes, weekend hold decision. Set calendar reminder."
+  }
+}

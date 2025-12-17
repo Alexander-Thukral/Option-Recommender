@@ -1,0 +1,7 @@
+{
+  "status": "error",
+  "error_type": "critical",
+  "error_message": "Could not fetch expiry dates: 401 Client Error: Unauthorized for url: https://api.upstox.com/v2/option/contract?instrument_key=NSE_INDEX%7CNifty+50",
+  "timestamp": "2025-12-08 16:08:36",
+  "warnings": []
+}

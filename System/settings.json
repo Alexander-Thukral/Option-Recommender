@@ -1,0 +1,69 @@
+{
+  "api_config": {
+    "upstox_access_token": "YOUR_UPSTOX_ACCESS_TOKEN_HERE",
+    "upstox_api_base": "https://api.upstox.com/v2",
+    "_comment": "Get your access token from https://developer.upstox.com after OAuth flow"
+  },
+  
+  "trading_parameters": {
+    "default_underlying": "NIFTY",
+    "available_underlyings": ["NIFTY", "BANKNIFTY", "FINNIFTY"],
+    "lot_sizes": {
+      "NIFTY": 25,
+      "BANKNIFTY": 15,
+      "FINNIFTY": 25
+    }
+  },
+  
+  "trader_profile": {
+    "capital": 500000,
+    "max_risk_per_trade_percent": 2,
+    "max_capital_deployment_percent": 60,
+    "risk_tolerance": "moderate",
+    "experience_level": "intermediate",
+    "preferred_holding_period": "7-30_days",
+    "broker_name": "Upstox",
+    "brokerage_per_order": 20
+  },
+  
+  "analysis_parameters": {
+    "iv_high_percentile_threshold": 70,
+    "iv_low_percentile_threshold": 30,
+    "optimal_dte_min": 30,
+    "optimal_dte_max": 60,
+    "mean_reversion_lookback_days": 20,
+    "zscore_overbought": 2.0,
+    "zscore_oversold": -2.0
+  },
+  
+  "cost_parameters": {
+    "stt_rate_options_sell": 0.000625,
+    "stt_rate_options_exercise": 0.00125,
+    "sebi_charges_per_crore": 10,
+    "stamp_duty_rate": 0.00003,
+    "gst_rate": 0.18,
+    "estimated_slippage_percent": 0.5
+  },
+  
+  "llm_config": {
+    "primary_llm": "claude",
+    "secondary_llms": ["gpt4", "perplexity"],
+    "judge_llm": "claude",
+    "enable_web_search": true
+  },
+  
+  "risk_rules": {
+    "max_position_size_lots": 10,
+    "stop_loss_multiplier": 2.0,
+    "profit_target_percent": 50,
+    "days_before_expiry_exit": 7,
+    "max_trades_per_day": 2,
+    "cool_off_after_loss_minutes": 30
+  },
+  
+  "notifications": {
+    "enable_alerts": false,
+    "alert_channels": ["email", "telegram"],
+    "_comment": "Configure alert integration if needed"
+  }
+}

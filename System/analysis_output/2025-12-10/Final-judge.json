@@ -1,0 +1,127 @@
+{
+  "judge_metadata": {
+    "judge_llm": "GPT-5.1",
+    "judgment_timestamp": "2025-12-10 12:10 IST",
+    "market_data_timestamp": "2025-12-10 11:30:30",
+    "underlying": "NIFTY",
+    "analyses_reviewed": ["Gemini", "Perplexity"]
+  },
+
+  "consensus_analysis": {
+    "market_assessment_consensus": {
+      "volatility_regime": {
+        "llm_views": {"Gemini": "low_vol", "Perplexity": "low_vol"},
+        "consensus": "AGREE – Low Volatility",
+        "judge_assessment": "Low volatility regime confirmed"
+      },
+      "directional_bias": {
+        "llm_views": {"Gemini": "neutral", "Perplexity": "neutral_to_bearish"},
+        "consensus": "NEARLY AGREE – Neutral/Sideways",
+        "judge_assessment": "Sideways/low conviction market"
+      },
+      "recommended_action": {
+        "llm_views": {"Gemini": "WAIT", "Perplexity": "WAIT"},
+        "consensus": "UNANIMOUS – WAIT/NO TRADE",
+        "judge_assessment": "Agree — stay flat"
+      }
+    },
+
+    "strategy_comparison": {
+      "strategies_proposed": [
+        {"llm": "Gemini", "strategy": "Iron Condor (post-Fed)", "expiry": "2025-12-16", "strikes": "25800/25600 PEs and 25900/26100 CEs"},
+        {"llm": "Perplexity", "strategy": "Bull Put Spread (post-Fed)", "expiry": "2025-12-16", "strikes": "25800 PE short / 25750 PE long"}
+      ],
+      "common_elements": ["Low IV favours premium selling", "Defined-risk spreads", "Use 16 Dec expiry", "Execute only after Fed clarity"],
+      "key_differences": ["Gemini leans to neutral IC, Perplexity leans credit put spread"]
+    },
+
+    "quality_assessment": {
+      "llm_rankings": [
+        {
+          "rank": 1,
+          "llm": "Gemini",
+          "reasoning_quality": "9",
+          "data_usage": "yes",
+          "math_accuracy": "yes",
+          "strengths": ["Event risk warning", "Risk sizing discipline"],
+          "weaknesses": ["Suggested spreads require wide margin but also advises wait"]
+        },
+        {
+          "rank": 2,
+          "llm": "Perplexity",
+          "reasoning_quality": "8",
+          "data_usage": "yes",
+          "math_accuracy": "yes",
+          "strengths": ["Clear stop loss plan", "Detailed risk assessment"],
+          "weaknesses": ["Proposed trade has low credit"]
+        }
+      ]
+    },
+
+    "disagreement_resolution": {
+      "major_disagreements": [
+        {
+          "topic": "Which strategy to execute later",
+          "positions": {"Gemini": "Iron Condor", "Perplexity": "Bull Put Spread"},
+          "judge_resolution": "Irrelevant because both recommend: DO NOT ENTER TODAY"
+        }
+      ],
+      "resolution_approach": "Consensus aligned on NO TRADE so directional/strategy debate postponed"
+    }
+  },
+
+  "final_verdict": {
+    "action": "NO_TRADE",
+    "confidence_level": "10",
+    "confidence_reasoning": "Two independent models plus market data confirm high binary risk and low edge"
+
+    ,
+    "if_no_trade": {
+      "primary_reason": "Extreme binary Fed risk + low implied volatility",
+      "contributing_factors": [
+        "Premiums do not compensate gap risk",
+        "Market likely volatile post-announcement"
+      ],
+      "what_would_change_this": "Fed outcome priced in + IV crush + NIFTY remains 25750-25950",
+      "wait_until": "Tomorrow morning after Fed reaction stabilises"
+    }
+  },
+
+  "dissenting_opinion": {
+    "any_valid_counter_view": "yes",
+    "counter_argument": "Low IV and stable range could reward a small credit spread",
+    "why_overruled": "Event risk outweighs reward — both models warned to wait"
+  },
+
+  "execution_instructions": {
+    "pre_trade_checklist": [
+      "[ ] Wait until post-Fed announcement and first 30–60 min price discovery",
+      "[ ] Ensure VIX does NOT spike above 13",
+      "[ ] Spot should be stabilising in 25750-25950 range"
+    ],
+    "order_placement": [
+      "1. No orders today",
+      "2. Re-evaluate tomorrow morning"
+    ],
+    "post_trade_checklist": [
+      "[ ] Review post-Fed IV reaction",
+      "[ ] Re-assess payoff zones based on new OI",
+      "[ ] Consider fresh entry tomorrow if range re-establishes"
+    ]
+  },
+
+  "scenario_summary": {
+    "best_case": {"scenario": "Fed dovish → volatility crush → great premium entries tomorrow", "pnl": "Better asymmetry later"},
+    "expected_case": {"scenario": "Sharp move → both proposed spreads become unsafe", "pnl": "Capital preserved"},
+    "worst_case": {"scenario": "Enter now → gap move wipes defined risk spread", "pnl": "-2–4% loss"}
+  },
+
+  "judge_notes": {
+    "key_insight": "Low VIX + Fed event = asymmetric risk:reward against entering today",
+    "what_to_watch": "IV spike or collapse after Fed — gives clarity for tomorrow",
+    "next_review_trigger": "First 30–60 min after Fed outcome",
+    "lessons_for_future": "Even when setup favours premium selling, macro binary risk overrides signal quality"
+  },
+
+  "final_one_liner": "NO TRADE — Fed risk + low volatility means the edge is negative; reassess tomorrow."
+}

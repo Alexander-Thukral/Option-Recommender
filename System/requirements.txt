@@ -1,0 +1,30 @@
+# Options Trading Analysis System - Dependencies
+# ==============================================
+# Install with: pip install -r requirements.txt
+
+# Core Framework
+streamlit>=1.28.0
+
+# Data Processing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Visualization
+plotly>=5.18.0
+
+# API Requests (for data collector)
+requests>=2.31.0
+
+# Standard library modules used (included in Python):
+# - json
+# - datetime
+# - io
+# - os
+# - sys
+# - math
+# - statistics
+# - functools
+# - dataclasses
+# - enum
+# - gzip
+# - typing

@@ -1,0 +1,310 @@
+{
+  "analysis_metadata": {
+    "analyst_llm": "DS_Options_Analyst_Pro",
+    "analysis_timestamp": "2025-12-09 16:15:00 IST",
+    "data_timestamp": "2025-12-09 16:07:26",
+    "underlying": "NIFTY",
+    "spot_price": "25839.65",
+    "lot_size": "25"
+  },
+  "market_assessment": {
+    "volatility_regime": "low_vol",
+    "vix_level": "10.95",
+    "iv_hv_ratio": "1.17",
+    "volatility_recommendation": "neutral",
+    "volatility_reasoning": "IV (9.3%) is historically low (Percentile 14.7) but trades slightly above HV (7.92%), creating a neutral zone. While low VIX typically discourages selling, the specific skew and premium structure offer exceptional Risk:Reward ratios for defined-risk strategies.",
+    "time_decay_assessment": "favorable_for_selling",
+    "days_to_weekly_expiry": "6",
+    "days_to_monthly_expiry": "20",
+    "optimal_expiry_for_strategy": "2025-12-16 (Weekly)",
+    "directional_bias": "bearish",
+    "directional_confidence": "medium",
+    "directional_reasoning": "Market has slipped below 26,000 and 25,850 support zones. Spot (25839) < SMA20 (26029). FIIs are net sellers (-₹656 Cr). However, Max Pain at 25900 suggests potential stickiness or mean reversion around this level despite bearish momentum.",
+    "max_pain_level": "25900.0",
+    "pcr_oi": "0.67",
+    "expected_move": "267.9",
+    "expected_move_percent": "1.04",
+    "overall_market_view": "Nervous consolidation ahead of US Fed meeting (Dec 10). Market is fragile but pricing in low volatility, creating a mismatch between event risk and option prices."
+  },
+  "news_and_global_factors": {
+    "search_performed": true,
+    "gift_nifty_indication": "25,941 (-7 points), indicating a flat/muted opening and consolidation near current levels.",
+    "global_market_sentiment": "mixed",
+    "us_markets_overnight": "Dow futures flat; S&P 500 futures -0.33%. Markets defensive ahead of Fed policy.",
+    "fii_dii_activity": "FIIs Net SELL ₹656 Cr; DIIs Net BUY ₹2,542 Cr. Persistent FII outflows >₹6,600 Cr in Dec driven by weak Rupee (>90/USD).",
+    "upcoming_events": [
+      {
+        "date": "2025-12-10",
+        "event": "US Federal Reserve Policy Decision",
+        "impact": "high"
+      },
+      {
+        "date": "2025-12-12",
+        "event": "US Inflation Data",
+        "impact": "medium"
+      }
+    ],
+    "key_news_items": [
+      "Nifty slips below 25,850; TechM & HCL Tech drag indices.",
+      "Rupee hits record low >90 vs USD, fueling FII selling.",
+      "RBI recently cut rates to 5.25% (Dec 5), providing long-term floor but short-term Fed jitters dominate."
+    ],
+    "event_risk_warning": "High risk of volatility expansion post-Fed meeting (Dec 10). Low VIX may underprice this move."
+  },
+  "trade_recommendation": {
+    "action": "TRADE",
+    "confidence_level": "8",
+    "confidence_reasoning": "The Iron Condor offers an exceptional 1.76 Risk:Reward ratio (Risking ₹1 to make ₹1.76). Even with Fed risk, the breakeven points (25672 - 26028) cover the expected move (±268 pts).",
+    "primary_trade": {
+      "strategy_name": "Iron Condor (Defined Risk)",
+      "strategy_type": "credit",
+      "expiry_date": "2025-12-16",
+      "why_this_expiry": "Captures accelerating Theta (9.46/day) while offering high premiums relative to risk due to Put Skew.",
+      "legs": [
+        {
+          "leg_number": 1,
+          "action": "SELL",
+          "option_type": "PE",
+          "strike": 25800,
+          "lots": 1,
+          "premium_to_use": "bid",
+          "premium_value": 96.05,
+          "iv": 9.4,
+          "delta": -0.403,
+          "theta": -9.32,
+          "oi": 4564650,
+          "liquidity": "moderate"
+        },
+        {
+          "leg_number": 2,
+          "action": "BUY",
+          "option_type": "PE",
+          "strike": 25600,
+          "lots": 1,
+          "premium_to_use": "ask",
+          "premium_value": 40.85,
+          "iv": 9.69,
+          "delta": -0.207,
+          "liquidity": "moderate"
+        },
+        {
+          "leg_number": 3,
+          "action": "SELL",
+          "option_type": "CE",
+          "strike": 25900,
+          "lots": 1,
+          "premium_to_use": "bid",
+          "premium_value": 122.85,
+          "iv": 9.36,
+          "delta": 0.476,
+          "theta": -9.54,
+          "oi": 4125900,
+          "liquidity": "good"
+        },
+        {
+          "leg_number": 4,
+          "action": "BUY",
+          "option_type": "CE",
+          "strike": 26100,
+          "lots": 1,
+          "premium_to_use": "ask",
+          "premium_value": 50.55,
+          "iv": 9.19,
+          "delta": 0.255,
+          "liquidity": "moderate"
+        }
+      ],
+      "order_instructions": {
+        "order_1": "SELL 1 LOT NIFTY 16DEC 25800 PE @ ₹96.05",
+        "order_2": "BUY 1 LOT NIFTY 16DEC 25600 PE @ ₹40.85",
+        "order_3": "SELL 1 LOT NIFTY 16DEC 25900 CE @ ₹122.85",
+        "order_4": "BUY 1 LOT NIFTY 16DEC 26100 CE @ ₹50.55",
+        "order_type": "LIMIT",
+        "execution_note": "Execute as a 4-leg basket order to ensure net credit pricing. Ensure spread width is exactly 200 points on both sides."
+      },
+      "trade_metrics": {
+        "net_credit_per_lot": "₹3,187.50 (127.5 pts)",
+        "net_credit_total": "₹3,187.50",
+        "max_profit_per_lot": "₹3,187.50",
+        "max_profit_total": "₹3,187.50",
+        "max_profit_scenario": "NIFTY expires between 25800 and 25900",
+        "max_loss_per_lot": "₹1,812.50 (72.5 pts)",
+        "max_loss_total": "₹1,812.50",
+        "max_loss_scenario": "NIFTY expires below 25600 or above 26100",
+        "breakeven_points": [
+          "25672.5",
+          "26027.5"
+        ],
+        "probability_of_profit": "58%",
+        "probability_of_max_profit": "33%",
+        "probability_of_max_loss": "15%",
+        "risk_reward_ratio": "1 : 1.76 (Risk ₹1 to Gain ₹1.76)",
+        "margin_required_approx": "₹55,000 - ₹60,000"
+      },
+      "position_sizing": {
+        "recommended_lots": 1,
+        "capital_at_risk": "₹1,812.50",
+        "percentage_of_capital": "Based on user capital (assume <2%)",
+        "sizing_reasoning": "Max risk is very low (₹1812/lot), but Event Risk (Fed) dictates small sizing.",
+        "max_lots_allowed": "As per available margin"
+      }
+    },
+    "risk_management": {
+      "stop_loss": {
+        "trigger": "If Spot closes below 25700 or above 26000 (breaching safety zones)",
+        "action": "Square off entire strategy",
+        "expected_loss_at_stop": "~₹1,000 - ₹1,200 per lot"
+      },
+      "profit_targets": [
+        {
+          "target": "50% of max profit",
+          "trigger": "Net credit decay to ~63 pts",
+          "action": "Close 50% lots or hold for expiry if away from wings",
+          "expected_profit": "₹1,593"
+        }
+      ],
+      "time_based_exit": "Exit by Dec 16 morning if profit > 80%",
+      "adjustment_triggers": [
+        {
+          "condition": "Market breaches 25800/25900 substantially after Fed",
+          "action": "Convert to Iron Fly or roll untested side to reduce risk"
+        }
+      ],
+      "max_holding_period": "7 days",
+      "daily_monitoring": "Check Gift Nifty pre-open due to Fed volatility."
+    },
+    "if_no_trade": {
+      "primary_reason": "Fed uncertainty too high for comfort",
+      "secondary_reasons": [
+        "VIX spiking > 15"
+      ],
+      "what_would_change_this": "Post-Fed clarity (Thursday)",
+      "suggested_wait_period": "24 hours",
+      "alternative_action": "Wait for Fed outcome, then deploy Directional Spread"
+    }
+  },
+  "alternative_strategies": [
+    {
+      "strategy_name": "Bear Call Spread",
+      "legs_summary": "Sell 25900 CE / Buy 25950 CE",
+      "when_to_use": "If view is strictly bearish/sideways and 26000 resistance holds",
+      "pros": [
+        "Lower margin",
+        "Profits from drop"
+      ],
+      "cons": [
+        "Lower R:R (0.74)",
+        "Loss on sharp reversal"
+      ],
+      "why_not_primary": "Iron Condor has significantly better R:R (1.76 vs 0.74) and covers sideways grind."
+    }
+  ],
+  "bias_correction_report": {
+    "trader_initial_view": "Not provided (Assumed Neutral/Cautious)",
+    "recommendation_differs": "N/A",
+    "potential_biases_identified": [
+      "Loss Aversion (Market dropping, fear of selling puts)"
+    ],
+    "counter_arguments_to_trade": [
+      "Fed could signal aggressive cuts, spiking market >26100",
+      "FII selling could intensify, breaking 25672 breakeven"
+    ],
+    "what_could_go_wrong": [
+      {
+        "scenario": "Fed Surprise (Hawkish or Dovish shock)",
+        "probability": "20%",
+        "impact": "Gap opening beyond breakeven (Max Loss risk)"
+      }
+    ],
+    "probability_of_loss": "42%",
+    "is_this_revenge_trade": "unknown",
+    "is_this_fomo_trade": "no"
+  },
+  "scenario_analysis": {
+    "spot_movements": [
+      {
+        "move": "+1%",
+        "spot": "26098",
+        "approx_pnl": "-₹1,812 (Max Loss)",
+        "action": "close"
+      },
+      {
+        "move": "+0.5%",
+        "spot": "25968",
+        "approx_pnl": "₹500 (Profit decays)",
+        "action": "adjust"
+      },
+      {
+        "move": "-0.5%",
+        "spot": "25710",
+        "approx_pnl": "₹1,500 (Profit)",
+        "action": "hold"
+      },
+      {
+        "move": "-1%",
+        "spot": "25581",
+        "approx_pnl": "-₹1,812 (Max Loss)",
+        "action": "close"
+      }
+    ],
+    "volatility_scenarios": [
+      {
+        "scenario": "IV +20%",
+        "impact": "Mark-to-market loss of ~₹800 due to vega expansion",
+        "action": "hold (theta will offset)"
+      },
+      {
+        "scenario": "IV -20%",
+        "impact": "Mark-to-market profit of ~₹600",
+        "action": "hold"
+      }
+    ],
+    "at_expiry": [
+      {
+        "spot": "25600",
+        "pnl": "-₹1,812"
+      },
+      {
+        "spot": "25672",
+        "pnl": "₹0"
+      },
+      {
+        "spot": "25850",
+        "pnl": "₹3,187"
+      },
+      {
+        "spot": "26028",
+        "pnl": "₹0"
+      },
+      {
+        "spot": "26100",
+        "pnl": "-₹1,812"
+      }
+    ]
+  },
+  "execution_checklist": [
+    "[ ] Verify spot price is near 25840",
+    "[ ] Ensure bid/ask spread on 25600/26100 wings is < ₹2",
+    "[ ] Execute as a single basket order to avoid leg risk",
+    "[ ] Margin required ~₹55k per lot; keep ₹20k buffer",
+    "[ ] AWARENESS: Fed meeting is tomorrow; gap risk exists"
+  ],
+  "caveats_and_disclaimers": [
+    "Strategy carries overnight gap risk due to Fed meeting.",
+    "Data valid as of Dec 9, 16:07 IST. Prices may have moved.",
+    "STT on exercise is high; CLOSE position before expiry, do not let it expire ITM."
+  ],
+  "final_verdict": {
+    "one_line_summary": "TRADE: Iron Condor on NIFTY (Sell 25800PE/25900CE, Buy 25600PE/26100CE) for high R:R (1.76) in nervous sideways market.",
+    "exact_action": "Sell 1 Lot 25800 PE & 25900 CE; Buy 1 Lot 25600 PE & 26100 CE (Dec 16 Expiry).",
+    "expected_outcome": "Profit of ~₹2,000-3,000 as market consolidates around 25800-25900 post-Fed.",
+    "key_levels_to_watch": {
+      "support": "25800 (Psychological)",
+      "resistance": "26000 (OI Call Wall)",
+      "stop_loss_trigger": "Spot < 25700 or > 26000",
+      "profit_target": "Combined premium = 63"
+    },
+    "exit_immediately_if": "Spot gaps > 26100 or < 25600 tomorrow morning.",
+    "next_review": "Dec 10 Post-Fed outcome."
+  }
+}
