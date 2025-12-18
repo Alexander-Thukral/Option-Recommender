@@ -1782,10 +1782,17 @@ class ExpirySelector:
         weekly = []
         monthly = []
 
+        seen_dates = set()
+
         for exp in expiries_data:
             exp_date_str = exp.get('expiry', '')
             if not exp_date_str:
                 continue
+            
+            # Deduplicate
+            if exp_date_str in seen_dates:
+                continue
+            seen_dates.add(exp_date_str)
 
             try:
                 exp_date = datetime.strptime(exp_date_str, "%Y-%m-%d")
