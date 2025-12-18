@@ -1109,8 +1109,6 @@ def render_verdict_viewer():
         import traceback
         with st.expander("Details"):
             st.code(traceback.format_exc())
-
-
 # ============================================================================
 # MAIN APPLICATION
 # ============================================================================
@@ -1220,16 +1218,27 @@ def main():
                             st.error(f"Analysis Failed: {analysis_result.get('error_message')}")
                             st.json(analysis_result)
                         else:
+                            st.session_state['analysis_result'] = analysis_result
                             st.success("✅ Data Collection Complete!")
                             
                             # Save to file
-                            timestamp = datetime.now().strftime("%H%M")
+                            # Fix: Use IST (UTC+5:30)
+                            ist_now = datetime.utcnow() + timedelta(hours=5, minutes=30)
+                            timestamp = ist_now.strftime("%H%M")
                             filename = f"market_data_{instrument}_{timestamp}.json"
                             json_str, file_path = data_collector_enhanced.generate_json_output(
                                 analysis_result, filename, use_date_folder=True
                             )
                             
                             st.markdown(f"**Output saved to:** `{file_path}`")
+                            
+                            # Download Button
+                            st.download_button(
+                                label="⬇️ Download Analysis JSON",
+                                data=json_str,
+                                file_name=filename,
+                                mime="application/json"
+                            )
                             
                             # Show summary
                             st.markdown("### 📊 Market Context")
@@ -1252,55 +1261,69 @@ def main():
                     st.error(f"An error occurred: {str(e)}")
                     st.exception(e)
 
-            # LLM Analysis Section
-            st.markdown("---")
-            st.markdown("### 🧠 Automated Analysis")
-            
-            if st.button("🧠 Run LLM Analysis", disabled=not os.environ.get("LLM_API_KEY")):
-                if not os.environ.get("LLM_API_KEY"):
-                    st.error("Please provide an LLM API Key in the sidebar.")
-                elif 'analysis_result' not in locals():
-                     st.error("Please run Data Collection first.")
-                else:
-                    with st.spinner(f"Running analysis with {llm_provider}..."):
-                        # Determine prompt file path
-                        # Assuming running from System/ directory, prompts are in root
-                        prompt_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "stage2_llm_analysis_prompt.md")
+        # LLM Analysis Section
+        st.markdown("---")
+        st.markdown("### 🧠 Automated Analysis")
+        
+        if st.button("🧠 Run LLM Analysis", disabled=not os.environ.get("LLM_API_KEY")):
+            if not os.environ.get("LLM_API_KEY"):
+                st.error("Please provide an LLM API Key in the sidebar.")
+            elif 'analysis_result' not in st.session_state:
+                 st.error("Please run Data Collection first.")
+            else:
+                analysis_result = st.session_state['analysis_result']
+                with st.spinner(f"Running analysis with {llm_provider}..."):
+                    # Determine prompt file path
+                    # Assuming running from System/ directory, prompts are in root
+                    prompt_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "stage2_llm_analysis_prompt.md")
+                    
+                    llm_result = llm_runner.run_analysis(
+                        provider=llm_provider,
+                        api_key=os.environ["LLM_API_KEY"],
+                        market_data=analysis_result,
+                        prompt_file=prompt_path
+                    )
+                    
+                    if llm_result['status'] == 'success':
+                        st.success("Analysis Complete!")
+                        with st.expander("View Analysis", expanded=True):
+                            st.markdown(llm_result['content'])
                         
-                        llm_result = llm_runner.run_analysis(
-                            provider=llm_provider,
-                            api_key=os.environ["LLM_API_KEY"],
-                            market_data=analysis_result,
-                            prompt_file=prompt_path
-                        )
+                        # Save analysis
+                        # Fix: Use IST (UTC+5:30)
+                        ist_now = datetime.utcnow() + timedelta(hours=5, minutes=30)
+                        timestamp = ist_now.strftime("%H%M")
+                        analysis_filename = f"llm_analysis_{instrument}_{timestamp}.json"
                         
-                        if llm_result['status'] == 'success':
-                            st.success("Analysis Complete!")
-                            with st.expander("View Analysis", expanded=True):
-                                st.markdown(llm_result['content'])
-                            
-                            # Save analysis
-                            timestamp = datetime.now().strftime("%H%M")
-                            analysis_filename = f"llm_analysis_{instrument}_{timestamp}.json"
-                            # We might want to parse the JSON from the LLM content if it's structured
-                            # For now, just save the raw result
-                            
-                            # Try to extract JSON from content if possible
-                            content = llm_result['content']
-                            json_match = re.search(r'```json\n(.*?)\n```', content, re.DOTALL)
-                            if json_match:
-                                try:
-                                    parsed_content = json.loads(json_match.group(1))
-                                    # Save as proper JSON
-                                    output_dir = data_collector_enhanced.get_output_directory()
-                                    save_path = os.path.join(output_dir, analysis_filename)
-                                    with open(save_path, 'w') as f:
-                                        json.dump(parsed_content, f, indent=2)
-                                    st.markdown(f"**Analysis saved to:** `{save_path}`")
-                                except:
-                                    pass
-                        else:
-                            st.error(f"LLM Analysis Failed: {llm_result.get('error_message')}")
+                        # Try to extract JSON from content if possible
+                        content = llm_result['content']
+                        json_match = re.search(r'```json\n(.*?)\n```', content, re.DOTALL)
+                        
+                        final_json_content = None
+                        
+                        if json_match:
+                            try:
+                                parsed_content = json.loads(json_match.group(1))
+                                final_json_content = json.dumps(parsed_content, indent=2)
+                                # Save as proper JSON
+                                output_dir = data_collector_enhanced.get_output_directory()
+                                save_path = os.path.join(output_dir, analysis_filename)
+                                with open(save_path, 'w') as f:
+                                    f.write(final_json_content)
+                                st.markdown(f"**Analysis saved to:** `{save_path}`")
+                            except:
+                                pass
+                        
+                        # If we couldn't parse JSON, we might still want to offer the raw content or just skip
+                        if final_json_content:
+                            st.download_button(
+                                label="⬇️ Download LLM Analysis JSON",
+                                data=final_json_content,
+                                file_name=analysis_filename,
+                                mime="application/json"
+                            )
+                    else:
+                        st.error(f"LLM Analysis Failed: {llm_result.get('error_message')}")
 
 
 if __name__ == "__main__":
